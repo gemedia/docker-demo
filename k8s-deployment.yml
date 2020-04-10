@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-demo-deployment
+  labels:
+    app: docker-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: docker-demo
+  template:
+    metadata:
+      labels:
+        app: docker-demo
+    spec:
+      containers:
+      - name: docker-demo
+        image: 192.168.10.160/tssp/docker-demo:0e7f2af
+        ports:
+        - containerPort: 40080
+        env:
+          - name: SPRING_PROFILES_ACTIVE
